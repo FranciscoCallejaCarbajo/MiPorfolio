@@ -473,28 +473,33 @@ span {
     font-size: 1.6rem;
 }
 /* nuevo */
-.work-list{
+/* Ajuste del grid para mostrar tres elementos por fila */
+.work-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 40px;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    grid-gap: 20px; /* Espacio entre los elementos */
     margin-top: 50px;
 }
-.work{
+
+.work-item {
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
-.work img {
+.work-item img {
     width: 100%;
+    height: auto; /* Mantener la proporción de las imágenes */
     border-radius: 10px;
     display: block;
     transition: transform 0.5s;
 }
-.layer{
+
+.layer {
     width: 100%;
     height: 0%;
-    background: linear-gradient(rgba(0,0,0,0.6), var(--main-color));
+    background: linear-gradient(rgba(0, 0, 0, 0.6), var(--main-color));
     border-radius: 10px;
     position: absolute;
     left: 0;
@@ -509,29 +514,26 @@ span {
     font-size: 14px;
     transition: height 0.5s;
 }
-.layer h3{
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-.layer a{
-    margin-top: 20px;
-    color: var(--main-color);
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 60px;
-    background: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
-}
 
-.work:hover img{
+/* Hover effect */
+.work-item:hover img {
     transform: scale(1.1);
 }
-.work:hover .layer{
+
+.work-item:hover .layer {
     height: 100%;
 }
+
+/* Inicialmente ocultamos todos los elementos más allá del tercer proyecto */
+.work-item {
+    display: none;
+}
+
+.work-item.show {
+    display: block;
+}
+
+
 
 .btnProject{
     display: block;
@@ -818,6 +820,7 @@ span {
     .timeline-dot {
         left: 0;
     }
+    
 }
 
 @media (max-width: 895px) {
@@ -890,5 +893,13 @@ span {
 
     .footer ul {
         font-size: 16px;
+    }
+    .work-list {
+        grid-template-columns: 1fr; /* Una columna */
+        grid-gap: 20px; /* Mantén el espacio entre los elementos */
+    }
+
+    .work-item {
+        width: 100%; /* Asegura que el elemento ocupe todo el ancho disponible */
     }
 }

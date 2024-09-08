@@ -49,3 +49,49 @@ menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x'); // tiene que ser el nombre de la clase correcta
     navbar.classList.toggle('active');
 }
+
+//Boton ver mas 
+document.addEventListener("DOMContentLoaded", function () {
+    // Número de trabajos que se mostrarán inicialmente
+    const trabajosIniciales = 3;
+    const trabajos = document.querySelectorAll('.work-item');
+    const botonToggle = document.getElementById('toggleButton');
+    let mostrandoTodo = false; // Estado para controlar si se muestran todos los trabajos o no
+
+    // Función para mostrar solo los trabajos iniciales
+    function mostrarIniciales() {
+        trabajos.forEach((trabajo, index) => {
+            if (index < trabajosIniciales) {
+                trabajo.classList.add('show');
+            } else {
+                trabajo.classList.remove('show');
+            }
+        });
+        botonToggle.textContent = "Ver más"; // Cambia el texto del botón
+        mostrandoTodo = false; // Actualiza el estado
+    }
+
+    // Función para mostrar todos los trabajos
+    function mostrarTodos() {
+        trabajos.forEach((trabajo) => {
+            trabajo.classList.add('show');
+        });
+        botonToggle.textContent = "Ver menos"; // Cambia el texto del botón
+        mostrandoTodo = true; // Actualiza el estado
+    }
+
+    // Mostrar los trabajos iniciales al cargar la página
+    mostrarIniciales();
+
+    // Añadir el evento de clic al botón para alternar entre "Ver más" y "Ver menos"
+    botonToggle.addEventListener('click', function () {
+        if (mostrandoTodo) {
+            mostrarIniciales(); // Si estamos mostrando todo, volvemos a mostrar solo los iniciales
+        } else {
+            mostrarTodos(); // Si no, mostramos todos los trabajos
+        }
+    });
+});
+
+
+
